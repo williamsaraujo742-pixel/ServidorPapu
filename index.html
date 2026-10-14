@@ -3,30 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Primer Servicio Web</title>
-    <!-- Vincula tu archivo CSS aquí -->
+    <title>Una carta para ti</title>
+    <!-- Letras bonitas de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="card">
-        <h2>Enviar Nombre al Servidor</h2>
-        
-        <form id="formulario-saludo">
-            <div class="form-group">
-                <label for="nombre">Ingresa tu nombre:</label>
-                <input type="text" id="nombre" placeholder="Ej. Jorge" required>
-            </div>
-            <button type="submit">Enviar al Servicio Web</button>
-        </form>
+    <!-- Decoración de fondo (Nubes y corazones) -->
+    <div class="fondo-decoracion">
+        <span class="nube n1">☁️</span>
+        <span class="nube n2">☁️</span>
+        <span class="nube n3">☁️</span>
+        <span class="corazon-fondo c1">❤️</span>
+        <span class="corazon-fondo c2">💖</span>
+        <span class="corazon-fondo c3">❤️</span>
+        <span class="corazon-fondo c4">💗</span>
+    </div>
 
-        <!-- Contenedor de respuesta, inicialmente oculto -->
-        <div id="contenedor-respuesta" class="oculto">
-            <p id="texto-saludo"></p>
+    <!-- Contenedor principal de la carta -->
+    <div class="carta" id="carta">
+        
+        <!-- PRIMERA INTERFAZ: El sobre cerrado -->
+        <div class="sobre" id="sobre">
+            <div class="alas">
+                <div class="ala ala-izq"></div>
+                <div class="ala ala-der"></div>
+            </div>
+            <div class="cuerpo-sobre">
+                <div class="corazon-principal">❤️</div>
+            </div>
+            <p class="texto-instruccion">Haz clic para abrir</p>
+        </div>
+
+        <!-- SEGUNDA INTERFAZ: La carta abierta -->
+        <div class="contenido">
+            <!-- Lado izquierdo: Fotos estilo Polaroid -->
+            <div class="galeria-fotos">
+                <div class="foto-polaroid">
+                    <img src="foto1.jpg" alt="Recuerdo 1">
+                </div>
+                <div class="foto-polaroid rotada">
+                    <img src="foto2.jpg" alt="Recuerdo 2">
+                </div>
+            </div>
+            
+            <!-- Lado derecho: El mensaje -->
+            <div class="texto-carta">
+                <h3>Para ti...</h3>
+                <p>Escribe aquí todo lo que quieras decirle. Este es tu espacio para expresar tus sentimientos, contar una historia o simplemente dedicarle unas palabras bonitas.</p>
+                <p>Puedes borrar este texto y poner el tuyo propio.</p>
+                <p class="firma">Con cariño ❤️</p>
+            </div>
         </div>
     </div>
 
-    <!-- Vincula tu archivo JavaScript aquí -->
     <script src="script.js"></script>
 </body>
 </html>
