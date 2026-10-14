@@ -1,51 +1,250 @@
-/* Estilos generales */
+/* --- ESTILOS GENERALES --- */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Quicksand', sans-serif; /* Letra redondeada y moderna */
+    background-color: #ffd1dc; /* Fondo rosa pastel */
     display: flex;
     justify-content: center;
-    padding-top: 50px;
-    background-color: #f4f4f9;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
 }
 
-/* Diseño de la tarjeta */
-.card {
-    background: rgb(15, 161, 190);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    width: 300px;
+/* --- DECORACIÓN DE FONDO --- */
+.fondo-decoracion {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
 }
 
-.form-group {
+.nube {
+    position: absolute;
+    font-size: 80px;
+    opacity: 0.9;
+    animation: flotar 6s infinite ease-in-out alternate;
+    filter: drop-shadow(0 5px 10px rgba(255, 255, 255, 0.5));
+}
+.n1 { top: 10%; left: 10%; }
+.n2 { top: 20%; right: 15%; font-size: 60px; animation-delay: 2s; }
+.n3 { bottom: 15%; left: 20%; font-size: 100px; animation-delay: 4s; }
+
+.corazon-fondo {
+    position: absolute;
+    font-size: 25px;
+    opacity: 0.7;
+    animation: flotar 4s infinite ease-in-out alternate;
+}
+.c1 { top: 30%; left: 30%; animation-delay: 1s; }
+.c2 { top: 15%; left: 60%; font-size: 35px; animation-delay: 3s; }
+.c3 { bottom: 25%; right: 25%; animation-delay: 0.5s; }
+.c4 { bottom: 10%; right: 10%; animation-delay: 2.5s; }
+
+@keyframes flotar {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-20px); }
+}
+
+/* --- CONTENEDOR PRINCIPAL DE LA CARTA --- */
+.carta {
+    width: 750px;
+    max-width: 90%;
+    background: #fffafb; /* Blanco con un toque rosado */
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(233, 30, 99, 0.25);
+    position: relative;
+    z-index: 10;
+    overflow: hidden;
+    transition: all 0.8s ease;
+    padding: 40px;
+    min-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- PRIMERA INTERFAZ: EL SOBRE --- */
+.sobre {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    position: relative;
+    width: 100%;
+}
+
+.cuerpo-sobre {
+    width: 200px;
+    height: 130px;
+    background: white;
+    border: 3px solid #f8bbd0;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 8px 20px rgba(233, 30, 99, 0.15);
+    position: relative;
+    z-index: 2;
+}
+
+.corazon-principal {
+    font-size: 60px;
+    animation: latido 1s infinite;
+}
+
+.alas {
+    position: absolute;
+    width: 100%;
+    top: 20px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 30px;
+    box-sizing: border-box;
+    z-index: 1;
+}
+
+.ala {
+    width: 80px;
+    height: 45px;
+    background: white;
+    border: 3px solid #f8bbd0;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+}
+
+.ala-izq { transform: rotate(-15deg); border-right: none; }
+.ala-der { transform: rotate(15deg); border-left: none; }
+
+.texto-instruccion {
+    margin-top: 30px;
+    color: #e91e63;
+    font-weight: 600;
+    font-size: 1.2rem;
+    animation: parpadeo 2s infinite;
+    font-family: 'Quicksand', sans-serif;
+}
+
+@keyframes latido {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+@keyframes parpadeo {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+/* --- SEGUNDA INTERFAZ: LA CARTA ABIERTA --- */
+.contenido {
+    display: none; /* Oculto al inicio */
+    gap: 40px;
+    width: 100%;
+    animation: aparecer 1s ease forwards;
+}
+
+/* Animación de entrada de la carta */
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Estilos de las fotos (Polaroid) */
+.galeria-fotos {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 45%;
+    padding-top: 20px;
+}
+
+.foto-polaroid {
+    background: white;
+    padding: 10px 10px 40px 10px; /* El espacio extra abajo simula una Polaroid */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    border: 1px solid #f0f0f0;
+    transform: rotate(-3deg); /* Inclinación hacia la izquierda */
+    transition: transform 0.3s ease;
+}
+
+.foto-polaroid.rotada {
+    transform: rotate(4deg); /* Inclinación hacia la derecha */
+    margin-left: 30px;
+}
+
+.foto-polaroid:hover {
+    transform: scale(1.05) rotate(0deg); /* Efecto al pasar el mouse */
+    z-index: 20;
+}
+
+.foto-polaroid img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+/* Estilos del texto de la carta */
+.texto-carta {
+    width: 55%;
+    color: #5d4037; /* Color café suave para el texto */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.texto-carta h3 {
+    font-family: 'Dancing Script', cursive; /* Letra cursiva */
+    font-size: 3rem;
+    color: #e91e63;
+    margin-top: 0;
     margin-bottom: 15px;
 }
 
-input {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    box-sizing: border-box; /* Para que el padding no rompa el tamaño */
+.texto-carta p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 15px;
 }
 
-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-/* Clase para ocultar la respuesta inicialmente */
-.oculto {
-    display: none;
-}
-
-#contenedor-respuesta {
+.firma {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem !important;
+    color: #e91e63;
+    text-align: right;
     margin-top: 20px;
-    padding: 10px;
-    background-color: #e9ecef;
-    border-radius: 4px;
-    text-align: center;
 }
+
+/* --- ESTADO ABIERTO (Cuando se hace clic) --- */
+.carta.abierta {
+    background: #fff0f5; /* Un fondo rosa muy pálido para la carta abierta */
+    border: 2px solid #f8bbd0;
+}
+
+.carta.abierta .sobre {
+    display: none; /* Ocultamos el sobre */
+}
+
+.carta.abierta .contenido {
+    display: flex; /* Mostramos la carta */
+}
+
+/* Ajustes para celulares */
+@media (max-width: 768px) {
+    .carta.abierta .contenido {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .galeria-fotos, .texto-carta {
+        width: 100%;
+    }
+    .foto-polaroid.rotada {
+        margin-left: 0;
+    }
+    .texto-carta h3 {
+        font-size: 2.2rem;
+    }
+}
+
+
