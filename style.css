@@ -1,13 +1,15 @@
 /* --- ESTILOS GENERALES --- */
 body {
-    font-family: 'Quicksand', sans-serif; /* Letra redondeada y moderna */
-    background-color: #ffd1dc; /* Fondo rosa pastel */
+    font-family: 'Quicksand', sans-serif;
+    background-color: #ffd1dc;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    overflow: hidden;
+    /* ¡CAMBIO CLAVE! Permitir scroll vertical en celulares */
+    overflow-x: hidden; 
+    overflow-y: auto;
     position: relative;
 }
 
@@ -50,7 +52,7 @@ body {
 .carta {
     width: 750px;
     max-width: 90%;
-    background: #fffafb; /* Blanco con un toque rosado */
+    background: #fffafb;
     border-radius: 25px;
     box-shadow: 0 15px 40px rgba(233, 30, 99, 0.25);
     position: relative;
@@ -138,13 +140,12 @@ body {
 
 /* --- SEGUNDA INTERFAZ: LA CARTA ABIERTA --- */
 .contenido {
-    display: none; /* Oculto al inicio */
+    display: none;
     gap: 40px;
     width: 100%;
     animation: aparecer 1s ease forwards;
 }
 
-/* Animación de entrada de la carta */
 @keyframes aparecer {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -161,20 +162,20 @@ body {
 
 .foto-polaroid {
     background: white;
-    padding: 10px 10px 40px 10px; /* El espacio extra abajo simula una Polaroid */
+    padding: 10px 10px 40px 10px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.15);
     border: 1px solid #f0f0f0;
-    transform: rotate(-3deg); /* Inclinación hacia la izquierda */
+    transform: rotate(-3deg);
     transition: transform 0.3s ease;
 }
 
 .foto-polaroid.rotada {
-    transform: rotate(4deg); /* Inclinación hacia la derecha */
+    transform: rotate(4deg);
     margin-left: 30px;
 }
 
 .foto-polaroid:hover {
-    transform: scale(1.05) rotate(0deg); /* Efecto al pasar el mouse */
+    transform: scale(1.05) rotate(0deg);
     z-index: 20;
 }
 
@@ -188,14 +189,14 @@ body {
 /* Estilos del texto de la carta */
 .texto-carta {
     width: 55%;
-    color: #5d4037; /* Color café suave para el texto */
+    color: #5d4037;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
 .texto-carta h3 {
-    font-family: 'Dancing Script', cursive; /* Letra cursiva */
+    font-family: 'Dancing Script', cursive;
     font-size: 3rem;
     color: #e91e63;
     margin-top: 0;
@@ -216,35 +217,67 @@ body {
     margin-top: 20px;
 }
 
-/* --- ESTADO ABIERTO (Cuando se hace clic) --- */
+/* --- ESTADO ABIERTO --- */
 .carta.abierta {
-    background: #fff0f5; /* Un fondo rosa muy pálido para la carta abierta */
+    background: #fff0f5;
     border: 2px solid #f8bbd0;
 }
 
 .carta.abierta .sobre {
-    display: none; /* Ocultamos el sobre */
+    display: none;
 }
 
 .carta.abierta .contenido {
-    display: flex; /* Mostramos la carta */
+    display: flex;
 }
 
-/* Ajustes para celulares */
+/* ========================================================= */
+/* --- AJUSTES PARA CELULARES (RESPONSIVE) --- */
+/* ========================================================= */
 @media (max-width: 768px) {
-    .carta.abierta .contenido {
-        flex-direction: column;
-        gap: 20px;
+    body {
+        padding: 20px 0; /* Da un poco de aire arriba y abajo */
+        align-items: flex-start; /* Permite que la carta crezca hacia abajo */
     }
-    .galeria-fotos, .texto-carta {
-        width: 100%;
-    }
-    .foto-polaroid.rotada {
-        margin-left: 0;
-    }
-    .texto-carta h3 {
-        font-size: 2.2rem;
-    }
-}
 
+    .carta {
+        width: 95%; /* Ocupa casi todo el ancho de la pantalla */
+        padding: 20px; /* Menos espacio interno */
+        min-height: auto;
+    }
+
+    .carta.abierta .contenido {
+        flex-direction: column; /* Pon las fotos arriba y el texto abajo */
+        gap: 30px;
+    }
+
+    .galeria-fotos, .texto-carta {
+        width: 100%; /* Ocupan todo el ancho */
+    }
+
+    .galeria-fotos {
+        padding-top: 0;
+        align-items: center;
+    }
+
+    .foto-polaroid {
+        width: 80%; /* Fotos más pequeñas para que no se salgan */
+        max-width: 250px;
+    }
+
+    .foto-polaroid.rotada {
+        margin-left: 0; /* Quitamos el desplazamiento lateral */
+    }
+
+    .texto-carta h3 {
+        font-size: 2.2rem; /* Título más pequeño */
+    }
+
+    .texto-carta p {
+        font-size: 1rem; /* Texto más pequeño */
+    }
+
+    .nube { font-size: 50px; } /* Nubes más pequeñas */
+    .n3 { font-size: 60px; }
+}
 
